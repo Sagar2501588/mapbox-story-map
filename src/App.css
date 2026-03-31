@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.step {
+  opacity: 0.3;
+  transition: 0.3s;
+}
+
+.step.active {
+  opacity: 1;
+}
