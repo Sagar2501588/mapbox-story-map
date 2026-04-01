@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import scrollama from "scrollama";
 import Map from "./Map";
 import "./Story.css";
+import redfort from "../assets/redfort.jpg";
+import indiagate from "../assets/indiagate.jpg";
+import qutubminar from "../assets/qutubminar.jpg";
+import humayun from "../assets/humayun.jpg";
+import akshardham from "../assets/akshardham.jpg";
+import lodhi from "../assets/lodhi.jpg";
+import lotus from "../assets/lotus.jpg";
+import cover from "../assets/cover.png";
 
 function Story() {
 
@@ -50,7 +58,7 @@ function Story() {
     const sections = [
         {
             type: "image",
-            src: "/assets/cover.png",
+            src: cover,
             title: "Delhi Through Time: The 10 Most Historic Places to Visit",
             subtitle: "Journey through the heart of India’s capital as we reveal the iconic landmarks that shaped Delhi’s rich history."
         },
@@ -105,7 +113,7 @@ function Story() {
                     id: "red-fort",
                     title: "Red Fort",
                     description: "Standing tall as a symbol of Mughal grandeur and India’s independence, the Red Fort was built in 1648 by Emperor Shah Jahan. Its massive red sandstone walls, royal halls, and intricate architecture once housed the Mughal court. Today, it remains a UNESCO World Heritage Site and the historic stage for India’s Independence Day celebrations.",
-                    image: "/assets/redfort.jpg",
+                    image: redfort,
                     alignment: "left",
                     location: {
                         center: [77.238953, 28.655704],  // 📍 exact
@@ -120,7 +128,7 @@ function Story() {
                     id: "india-gate",
                     title: "India Gate",
                     description: "Standing proudly in the heart of New Delhi, India Gate is a grand war memorial built in 1931 to honor the brave Indian soldiers who lost their lives during World War I and the Third Anglo-Afghan War. Designed by the renowned British architect Sir Edwin Lutyens, this monumental arch rises majestically against the skyline, reflecting both sacrifice and national pride. Its walls are inscribed with the names of thousands of soldiers, making it a place of remembrance and respect. Over time, India Gate has also become a vibrant gathering spot for locals and visitors alike, surrounded by lush green lawns and illuminated beautifully at night. It stands not only as a symbol of history but also as a living landmark of unity, patriotism, and the spirit of modern India.",
-                    image: "/assets/indiagate.jpg",
+                    image: indiagate,
                     alignment: "right",
                     location: {
                         center: [77.229421, 28.613035],
@@ -135,7 +143,7 @@ function Story() {
                     id: "qutub-minar",
                     title: "Qutub Minar",
                     description: "Rising gracefully above the skyline of Delhi, the Qutub Minar stands as one of the finest examples of Indo-Islamic architecture and a testament to the beginnings of Muslim rule in India. Built in 1193 by Qutb-ud-din Aibak and later completed by his successors, this towering minaret reaches a height of 73 meters, making it one of the tallest brick minarets in the world. Crafted from red sandstone and marble, its intricate carvings, Arabic inscriptions, and detailed balconies reflect remarkable craftsmanship and historical significance. Surrounded by ancient ruins and the famous Quwwat-ul-Islam Mosque, the Qutub Minar complex tells a story of conquest, culture, and architectural brilliance. Today, it is a UNESCO World Heritage Site and remains a major attraction, drawing visitors from around the world to witness its grandeur and legacy.",
-                    image: "/assets/qutubminar.jpg",
+                    image: qutubminar,
                     alignment: "left",
                     location: {
                         center: [77.185283, 28.524430],
@@ -149,7 +157,7 @@ function Story() {
                     id: "humayun-tomb",
                     title: "Humayun’s Tomb",
                     description: "Often regarded as the precursor to the Taj Mahal, Humayun’s Tomb is a stunning example of Mughal architecture built in 1570 by Empress Bega Begum in memory of Emperor Humayun. Designed with Persian influences, this grand mausoleum features a symmetrical layout, lush gardens, and intricate red sandstone and white marble work. It marks the beginning of a new era in Mughal architectural style, blending beauty with geometric precision. Today, it stands as a UNESCO World Heritage Site and a peaceful retreat that reflects the elegance and legacy of the Mughal dynasty.",
-                    image: "/assets/humayun.jpg",
+                    image: humayun,
                     alignment: "right",
                     location: {
                         center: [77.2507, 28.5933],
@@ -163,7 +171,7 @@ function Story() {
                     id: "akshardham",
                     title: "Akshardham Temple",
                     description: "A modern architectural marvel, the Akshardham Temple showcases the richness of Indian culture, spirituality, and craftsmanship. Opened in 2005, this grand temple complex is dedicated to Bhagwan Swaminarayan and is built entirely from intricately carved sandstone and marble without the use of steel. Surrounded by beautifully landscaped gardens and water features, the temple offers a serene and immersive experience. Its exhibitions, light shows, and spiritual ambiance make it not just a place of worship but also a center of cultural learning and inspiration.",
-                    image: "/assets/akshardham.jpg",
+                    image: akshardham,
                     alignment: "left",
                     location: {
                         center: [77.277643, 28.612553],
@@ -177,7 +185,7 @@ function Story() {
                     id: "lodhi-garden",
                     title: "Lodhi Garden",
                     description: "A perfect blend of history and nature, Lodhi Garden is a peaceful green oasis in the heart of Delhi, dotted with tombs from the 15th-century Lodhi dynasty. Spread across vast landscaped lawns, the garden features beautiful pathways, historic structures, and serene water bodies that attract both history enthusiasts and nature lovers. The architectural remnants, including the tombs of Sikandar Lodhi and Mohammed Shah, offer a glimpse into Delhi’s pre-Mughal era. Today, it remains a popular spot for morning walks, relaxation, and cultural exploration.",
-                    image: "/assets/lodhi.jpg",
+                    image: lodhi,
                     alignment: "right",
                     location: {
                         center: [77.219428, 28.593160],
@@ -191,7 +199,7 @@ function Story() {
                     id: "lotus-temple",
                     title: "Lotus Temple",
                     description: "Known for its striking lotus-shaped design, the Lotus Temple is one of Delhi’s most iconic modern landmarks and a symbol of peace and unity. Completed in 1986, this Bahá'í House of Worship welcomes people of all religions to meditate and reflect in silence. Its unique architecture, made of white marble petals, creates a serene and visually captivating environment. Surrounded by tranquil pools and gardens, the temple stands as a powerful representation of harmony, spirituality, and inclusiveness in the modern world.",
-                    image: "/assets/lotus.jpg",
+                    image: lotus,
                     alignment: "left",
                     location: {
                         center: [77.259069, 28.553469],
