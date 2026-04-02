@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mapbox-story-map/static/css/main.96eb016f.css",
-    "main.js": "/mapbox-story-map/static/js/main.827e7ef0.js",
+    "main.css": "/mapbox-story-map/static/css/main.fbe06621.css",
+    "main.js": "/mapbox-story-map/static/js/main.91b692aa.js",
     "static/js/453.1d614529.chunk.js": "/mapbox-story-map/static/js/453.1d614529.chunk.js",
     "static/media/humayun.jpg": "/mapbox-story-map/static/media/humayun.bdd2d5478c38a9477f88.jpg",
     "static/media/cover.png": "/mapbox-story-map/static/media/cover.c32405e246d701c777b2.png",
@@ -12,12 +12,12 @@
     "static/media/redfort.jpg": "/mapbox-story-map/static/media/redfort.0e046b234c25bc2f584a.jpg",
     "static/media/akshardham.jpg": "/mapbox-story-map/static/media/akshardham.a54db0550e4b0b19eb9a.jpg",
     "index.html": "/mapbox-story-map/index.html",
-    "main.96eb016f.css.map": "/mapbox-story-map/static/css/main.96eb016f.css.map",
-    "main.827e7ef0.js.map": "/mapbox-story-map/static/js/main.827e7ef0.js.map",
+    "main.fbe06621.css.map": "/mapbox-story-map/static/css/main.fbe06621.css.map",
+    "main.91b692aa.js.map": "/mapbox-story-map/static/js/main.91b692aa.js.map",
     "453.1d614529.chunk.js.map": "/mapbox-story-map/static/js/453.1d614529.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.96eb016f.css",
-    "static/js/main.827e7ef0.js"
+    "static/css/main.fbe06621.css",
+    "static/js/main.91b692aa.js"
   ]
 }
