@@ -1,6 +1,6 @@
 .story-page {
     width: 100%;
-    background: #7fdfc4;
+    background: #eff4e9;
     color: #000000;
     font-family: Arial, sans-serif;
 }
@@ -65,6 +65,8 @@
 .map-container {
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 /* map styling */
@@ -96,19 +98,15 @@
     .hero-overlay h1 {
         font-size: 34px;
     }
-
     .hero-overlay p {
         font-size: 18px;
     }
-
     .text-section {
         padding: 40px 16px;
     }
-
     .text-container p {
         font-size: 17px;
     }
-
     .map-section {
         padding: 24px 16px 48px;
     }
@@ -119,15 +117,15 @@
 .map-3 {
     display: flex;
     min-height: 300vh;
-
     margin: 0;
     padding: 0;
 }
 
 .map3-story {
     width: 40%;
-    padding: 60px 40px;
+    padding: 40px 24px;
     background: #eff4e9;
+    padding: 20px;  
 
     overflow: visible;
     /* 🔥 CHANGE */
@@ -135,22 +133,11 @@
     /* 🔥 CHANGE */
 }
 
-.map3-map {
-    width: 60%;
-    position: sticky;
-    top: 0;
-    height: 100vh;
 
-    padding: 0;
-    /* 🔥 remove gap */
-    margin: 0;
-    overflow: hidden;
-    /* 🔥 clean edges */
-}
 
 .map3-map>div {
     width: 100% !important;
-    height: 100% !important;
+    height: 90% !important;
 }
 
 .step {
@@ -219,13 +206,10 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-
     background: rgba(0, 0, 0, 0.85);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     z-index: 9999;
 }
 
@@ -252,18 +236,19 @@
 
 .map-2 {
     position: relative;
-    height: 50vh;   /* 🔥 scroll space */
+    height: auto;
 }
 
 .map-2 .map-container {
-    position: sticky;
+    position: relative;
     top: 0;
-    height: 100vh;   /* full screen */
+    height: auto;   /* full screen */
 }
 
 
 .map-section {
     position: relative;
+    padding-bottom: 40px;
 }
 
 /* 🔥 TEXT ON MAP */
@@ -285,4 +270,39 @@
     display: block;
     font-size: 12px;
     opacity: 0.8;
+}
+
+.map3-map {
+    width: 60%;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+
+    display: flex;                 /* 🔥 ADD */
+    justify-content: center;       /* 🔥 center horizontally */
+    align-items: center;           /* 🔥 center vertically */
+
+    padding: 20px;                 /* 🔥 small gap around */
+    margin: 0;
+    overflow: hidden;
+    background: #eff4e9;           /* optional clean bg */
+}
+
+/* 🎴 MAP CARD */
+.map-card {
+    width: 70%;                    /* 🔥 smaller width */
+    height: 70%;                   /* 🔥 smaller height */
+
+    border-radius: 24px;
+    overflow: hidden;
+    
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+
+    transition: all 0.3s ease;
+}
+
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+    display: none !important;
 }

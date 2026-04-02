@@ -117,12 +117,13 @@ function Story() {
                     alignment: "left",
                     location: {
                         center: [77.238953, 28.655704],  // 📍 exact
-                        zoom: 19,                     // 🔍 zoom
+                        zoom: 18,                     // 🔍 zoom
                         pitch: 68.9,                     // 🎥 tilt
                         bearing: 114.02                  // 🧭 rotation
                     },
                     style: "mapbox://styles/royakshay/cmneb0w08000101shhkpk89ih",
-                    mapAnimation: "flyTo"
+                    mapAnimation: "flyTo",
+                    rotateAnimation: true
                 },
                 {
                     id: "india-gate",
@@ -137,7 +138,8 @@ function Story() {
                         bearing: -44.50
                     },
                     style: "mapbox://styles/royakshay/cmneb0w08000101shhkpk89ih",
-                    mapAnimation: "flyTo"
+                    mapAnimation: "flyTo",
+                    rotateAnimation: true
                 },
                 {
                     id: "qutub-minar",
@@ -151,7 +153,8 @@ function Story() {
                         pitch: 54.88,
                         bearing: -105.63
                     },
-                    mapAnimation: "flyTo"
+                    mapAnimation: "flyTo",
+                    rotateAnimation: true
                 },
                 {
                     id: "humayun-tomb",
@@ -165,7 +168,8 @@ function Story() {
                         pitch: 65.15,
                         bearing: 0
                     },
-                    mapAnimation: "flyTo"
+                    mapAnimation: "flyTo",
+                    rotateAnimation: true
                 },
                 {
                     id: "akshardham",
@@ -179,7 +183,8 @@ function Story() {
                         pitch: 58.00,
                         bearing: -82.46
                     },
-                    mapAnimation: "flyTo"
+                    mapAnimation: "flyTo",
+                    rotateAnimation: true
                 },
                 {
                     id: "lodhi-garden",
@@ -193,7 +198,8 @@ function Story() {
                         pitch: 48.00,
                         bearing: -32.00
                     },
-                    mapAnimation: "flyTo"
+                    mapAnimation: "flyTo",
+                    rotateAnimation: true
                 },
                 {
                     id: "lotus-temple",
@@ -218,7 +224,7 @@ function Story() {
         <div className="story-page">
             {sections.map((sec, index) => {
 
-                // 🖼️ IMAGE
+                // 🖼️ IMAGE SECTION (hero cover)
                 if (sec.type === "image") {
                     return (
                         <section
@@ -234,7 +240,7 @@ function Story() {
                     );
                 }
 
-                // 📝 TEXT
+                // 📝 TEXT SECTION (normal paragraph content)
                 if (sec.type === "text") {
                     return (
                         <section key={index} className="text-section">
@@ -245,41 +251,46 @@ function Story() {
                     );
                 }
 
+                // 🗺️ MAP-2 (static overview map with markers)
                 if (sec.type === "map-2") {
                     return (
                         <section key={index} className={`map-section ${sec.type}`}>
 
-                            {/* 🔥 TITLE */}
+                            {/* 🔥 TITLE shown above map */}
                             <div className="map-title">
                                 Location Map of All Tourist Points
                             </div>
 
                             <div className="map-container">
-                                <Map chapter={sec.chapter} height={sec.height} />
+                                {/* 🔥 Map receives chapter config + all chapters for markers */}
+                                <Map
+                                    chapter={sec.chapter}
+                                    chapters={sections.find(s => s.type === "map-3")?.chapters}
+                                    height={sec.height}   // 📏 controlled from sections object
+                                />
                             </div>
                         </section>
                     );
                 }
 
-
-
-                // 🗺️ NORMAL MAP (map-1, map-2)
+                // 🗺️ GENERIC MAP (fallback for map-1 / map-2)
                 if (sec.type === "map-1" || sec.type === "map-2") {
                     return (
                         <section key={index} className={`map-section ${sec.type}`}>
                             <div className="map-container">
+                                {/* 🔥 simple map without markers */}
                                 <Map chapter={sec.chapter} height={sec.height} />
                             </div>
                         </section>
                     );
                 }
 
-                // 🔥 SPECIAL MAP-3 (SCROLL STORY MAP)
+                // 🔥 MAIN STORY MAP (scroll-driven interactive map)
                 if (sec.type === "map-3") {
                     return (
                         <section key={index} className="map-3">
 
-                            {/* LEFT SIDE STORY */}
+                            {/* 📝 LEFT SIDE STORY CONTENT */}
                             <div className="map3-story">
                                 {sec.chapters.map((chap) => (
                                     <div key={chap.id} id={chap.id} className="step">
@@ -287,13 +298,13 @@ function Story() {
                                             <h3>{chap.title}</h3>
                                             <p>{chap.description}</p>
 
-                                            {/* 🖼️ IMAGE UNDER TEXT */}
+                                            {/* 🖼️ IMAGE INSIDE STORY CARD */}
                                             {chap.image && (
                                                 <div className="story-image">
                                                     <img
                                                         src={chap.image}
                                                         alt={chap.title}
-                                                        onClick={() => setSelectedImage(chap.image)}  // ✅ এখানে add
+                                                        onClick={() => setSelectedImage(chap.image)}  // 🔍 opens modal
                                                     />
                                                 </div>
                                             )}
@@ -302,18 +313,21 @@ function Story() {
                                 ))}
                             </div>
 
-                            {/* RIGHT SIDE MAP (ONLY ONE MAP) */}
+                            {/* 🗺️ RIGHT SIDE MAP AREA */}
                             <div className="map3-map">
 
-                                {/* 🗺️ MAP */}
+                                {/* 🔥 only render map when chapter is active */}
                                 {activeChapter && (
-                                    <Map
-                                        chapter={activeChapter}
-                                        chapters={sec.chapters}   // 🔥 ADD THIS
-                                        height={sec.height}
-                                    />
-                                )}
+                                    <div className="map-card">   {/* 🎴 card wrapper for styling */}
 
+                                        <Map
+                                            chapter={activeChapter}   // 📍 controls camera (center, zoom, pitch)
+                                            chapters={sec.chapters}   // 📍 used for markers
+                                            height="100%"             // 📏 map fills entire card
+                                        />
+
+                                    </div>
+                                )}
                             </div>
 
                         </section>
@@ -323,12 +337,14 @@ function Story() {
                 return null;
             })}
 
+            {/* 🔍 IMAGE MODAL (fullscreen preview) */}
             {selectedImage && (
                 <div className="image-modal" onClick={() => setSelectedImage(null)}>
                     <img src={selectedImage} alt="full" />
                 </div>
             )}
 
+            {/* 🔚 FOOTER */}
             <footer className="story-footer">
                 <p> 2026 Story Map Project</p>
             </footer>

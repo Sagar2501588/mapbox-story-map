@@ -12,17 +12,17 @@ function Map({ chapter, chapters, height = "500px" }) {
 
     let rotationFrame;
 
-    const startRotation = (center) => {
+    const startRotation = (center, fixedZoom, fixedPitch) => {
+        if (!center || fixedZoom == null) return;   // ✅ ADD HERE
+
         const rotate = () => {
-            if (!map.current) return;
+            if (!map.current) return;               // ✅ AND HERE
 
-            const bearing = map.current.getBearing();
-
-            map.current.easeTo({
-                center: center,       // 🔥 center fixed
-                bearing: bearing + 0.1, // 🔥 smooth rotation
-                duration: 50,
-                easing: (t) => t
+            map.current.jumpTo({
+                center: center,
+                zoom: fixedZoom,
+                pitch: fixedPitch || 0,
+                bearing: map.current.getBearing() + 0.01
             });
 
             rotationFrame = requestAnimationFrame(rotate);
@@ -50,11 +50,40 @@ function Map({ chapter, chapters, height = "500px" }) {
                 bearing: chapter.location.bearing || 0,
             });
 
+            // ✅ ADD EVENTS HERE (ONLY ONCE)
+            map.current.on("load", () => {
+
+                // 🔥 CLICK
+                map.current.on("click", "delhi-tourist-points", (e) => {
+                    const feature = e.features[0];
+
+                    const name =
+                        feature.properties.name ||
+                        feature.properties["Place Name"] ||
+                        "Sagar";
+
+                    new mapboxgl.Popup()
+                        .setLngLat(feature.geometry.coordinates)
+                        .setText(name)
+                        .addTo(map.current);
+                });
+
+                // 🔥 HOVER CURSOR
+                map.current.on("mouseenter", "delhi-tourist-points", () => {
+                    map.current.getCanvas().style.cursor = "pointer";
+                });
+
+                map.current.on("mouseleave", "delhi-tourist-points", () => {
+                    map.current.getCanvas().style.cursor = "";
+                });
+
+            });
+
             return;
         }
 
         // 🛑 stop previous rotation
-        stopRotation();
+        map.current.stop();   // ✅ ADD THIS LINE
 
         // 🎥 move camera
         map.current.flyTo({
@@ -62,13 +91,42 @@ function Map({ chapter, chapters, height = "500px" }) {
             zoom: chapter.location.zoom,
             pitch: chapter.location.pitch || 0,
             bearing: chapter.location.bearing || 0,
-            offset: [0, -150]
+            // offset: [0, -150]
+        });
+
+
+        map.current.once("idle", () => {
+            if (!map.current.getLayer("delhi-tourist-points")) return;
+
+            // 🔥 CLICK
+            map.current.on("click", "delhi-tourist-points", (e) => {
+                const feature = e.features[0];
+                const name = feature.properties.name || "No name";
+
+                new mapboxgl.Popup()
+                    .setLngLat(feature.geometry.coordinates)
+                    .setText(name)
+                    .addTo(map.current);
+            });
+
+            // 🔥 CURSOR
+            map.current.on("mouseenter", "delhi-tourist-points", () => {
+                map.current.getCanvas().style.cursor = "pointer";
+            });
+
+            map.current.on("mouseleave", "delhi-tourist-points", () => {
+                map.current.getCanvas().style.cursor = "";
+            });
         });
 
         // 🔥 START CONTINUOUS ROTATE
         if (chapter.rotateAnimation) {
             setTimeout(() => {
-                startRotation(chapter.location.center);
+                startRotation(
+                    chapter.location.center,
+                    chapter.location.zoom,
+                    chapter.location.pitch
+                );
             }, 1500);
         }
 
@@ -89,8 +147,11 @@ function Map({ chapter, chapters, height = "500px" }) {
             const el = document.createElement("div");
             el.className = "custom-marker";
 
+            const popup = new mapboxgl.Popup({ offset: 25 }).setText(chap.title);
+
             const marker = new mapboxgl.Marker(el)
                 .setLngLat(chap.location.center)
+                .setPopup(popup)   // ✅ ADD THIS
                 .addTo(map.current);
 
             window.allMarkers.push(marker);
@@ -100,14 +161,24 @@ function Map({ chapter, chapters, height = "500px" }) {
     // 🧩 resize fix
     useEffect(() => {
         if (map.current) {
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 map.current.resize();
-            }, 100);
+            });
         }
     }, [chapter]);
 
     useEffect(() => {
         return () => stopRotation();
+    }, []);
+
+    useEffect(() => {
+        if (!map.current) return;
+
+        const handleResize = () => map.current.resize();
+
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     return (
