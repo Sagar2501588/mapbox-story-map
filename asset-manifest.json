@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/mapbox-story-map/static/css/main.fbe06621.css",
-    "main.js": "/mapbox-story-map/static/js/main.91b692aa.js",
+    "main.css": "/mapbox-story-map/static/css/main.6f5416f9.css",
+    "main.js": "/mapbox-story-map/static/js/main.59952436.js",
     "static/js/453.1d614529.chunk.js": "/mapbox-story-map/static/js/453.1d614529.chunk.js",
+    "static/media/delhivideo.mp4": "/mapbox-story-map/static/media/delhivideo.e8117a42095d1f013865.mp4",
     "static/media/humayun.jpg": "/mapbox-story-map/static/media/humayun.bdd2d5478c38a9477f88.jpg",
     "static/media/cover.png": "/mapbox-story-map/static/media/cover.c32405e246d701c777b2.png",
     "static/media/lotus.jpg": "/mapbox-story-map/static/media/lotus.cfd9e73b6a8cbbaa0d60.jpg",
@@ -12,12 +13,12 @@
     "static/media/redfort.jpg": "/mapbox-story-map/static/media/redfort.0e046b234c25bc2f584a.jpg",
     "static/media/akshardham.jpg": "/mapbox-story-map/static/media/akshardham.a54db0550e4b0b19eb9a.jpg",
     "index.html": "/mapbox-story-map/index.html",
-    "main.fbe06621.css.map": "/mapbox-story-map/static/css/main.fbe06621.css.map",
-    "main.91b692aa.js.map": "/mapbox-story-map/static/js/main.91b692aa.js.map",
+    "main.6f5416f9.css.map": "/mapbox-story-map/static/css/main.6f5416f9.css.map",
+    "main.59952436.js.map": "/mapbox-story-map/static/js/main.59952436.js.map",
     "453.1d614529.chunk.js.map": "/mapbox-story-map/static/js/453.1d614529.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fbe06621.css",
-    "static/js/main.91b692aa.js"
+    "static/css/main.6f5416f9.css",
+    "static/js/main.59952436.js"
   ]
 }
