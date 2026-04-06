@@ -10,6 +10,7 @@ import akshardham from "../assets/akshardham.jpg";
 import lodhi from "../assets/lodhi.jpg";
 import lotus from "../assets/lotus.jpg";
 import cover from "../assets/cover.png";
+import delhivideo from "../assets/delhivideo.mp4";
 
 function Story() {
 
@@ -42,9 +43,7 @@ function Story() {
                     response.element.classList.add("active");
 
                     const id = response.element.id;
-
                     const map3 = sections.find(sec => sec.type === "map-3");
-
                     const chapter = map3?.chapters.find(c => c.id === id);
 
                     if (chapter) {
@@ -55,6 +54,8 @@ function Story() {
 
         return () => scroller.destroy();
     }, []);
+
+
     const sections = [
         {
             type: "image",
@@ -66,24 +67,65 @@ function Story() {
         {
             type: "text",
             content:
-                "Delhi is not just a city—it is a timeline of empires, cultures, and architectural brilliance. From Mughal forts to colonial landmarks and spiritual centers, every monument tells a story. This story map takes you on a journey through ten of Delhi’s most iconic places and uncovers the history behind them."
+                "Delhi is not one city. It is many cities, built over each other — each layer carrying the memory of an empire, a culture, a people. From the mythical Indraprastha to the Mughal capital of Shahjahanabad, from colonial New Delhi to today’s bustling metropolis — Delhi is a living timeline."
         },
 
-        // {
-        //     type: "map-1",
-        //     chapter: {
-        //         location: {
-        //             center: [77.2090, 28.6139],
-        //             zoom: 8.5,
-        //         }
-        //     },
-        //     height: "350px"
-        // },
+        {
+            type: "map-1",
+            video: delhivideo,
+            text: `Delhi has been rebuilt many times.<br>
+                • Indraprastha (Mythological)<br>
+                • Mehrauli (Sultanate)<br>
+                • Shahjahanabad (Mughal)<br>
+                • New Delhi (British)<br>
+                Each city left behind a unique architectural and cultural legacy, creating the rich tapestry that is modern Delhi.`,
+            height: "400px",
+            // 🔥 NEW TABLE DATA
+            table: [
+                {
+                    era: "Mythological Era",
+                    period: "Ancient (Mahabharata Period)",
+                    built: "Indraprastha",
+                    description: "Believed to be the capital of the Pandavas, Indraprastha represents the earliest known reference to Delhi in ancient Indian texts.",
+                    significance: "Marks the mythical origin of Delhi as a city of power and civilization."
+                },
+                {
+                    era: "Delhi Sultanate",
+                    period: "12th – 16th Century",
+                    built: "Qutub Minar, Mehrauli Archaeological Complex, Alai Darwaza",
+                    description: "The establishment of Islamic rule introduced new architectural styles, including arches, domes, and minarets.",
+                    significance: "This period laid the foundation of Delhi as a major political center in North India."
+                },
+                {
+                    era: "Mughal Empire",
+                    period: "16th – 18th Century",
+                    built: "Red Fort, Jama Masjid, Chandni Chowk, Humayun’s Tomb",
+                    description: "Delhi flourished as a cultural and political capital under the Mughals, marked by grand architecture and urban planning.",
+                    significance: "Defined the cultural identity of Old Delhi and established it as a global center of art and trade."
+                },
+                {
+                    era: "British Colonial Era",
+                    period: "19th – 20th Century",
+                    built: "India Gate, Rashtrapati Bhavan, Parliament House, Connaught Place",
+                    description: "The British redesigned Delhi into a planned capital with wide avenues and administrative buildings.",
+                    significance: "Introduced modern urban planning and established New Delhi as the administrative capital."
+                },
+                {
+                    era: "Modern Delhi",
+                    period: "Post-1947 (Independent India)",
+                    built: "Akshardham Temple, Lotus Temple, Delhi Metro, Cyber City",
+                    description: "A rapidly growing metropolis combining heritage with modern infrastructure and global connectivity.",
+                    significance: "Represents India’s political, economic, and cultural hub in the contemporary world."
+                }
+            ]
+
+
+        },
 
         {
             type: "text",
             content:
-                "The map above highlights the key locations that define Delhi’s historical landscape. From the old city to modern landmarks, these sites are spread across the capital, each representing a different chapter of its past."
+                "The map above presents a spatial narrative of Delhi’s historical evolution, highlighting the key locations that collectively define the city’s identity. Rather than existing as a single, unified settlement, Delhi is composed of multiple layers of urban development, each shaped by different rulers, cultures, and time periods.\n\nFrom the dense and vibrant lanes of Old Delhi, where Mughal-era monuments and markets continue to thrive, to the wide, planned avenues of New Delhi introduced during the British colonial period, the city reflects a continuous transformation across centuries. Moving further south, the remnants of the Delhi Sultanate in Mehrauli reveal some of the earliest architectural expressions that helped establish Delhi as a center of power.\n\nEach location on the map is more than just a geographic point — it represents a distinct chapter in the story of Delhi. Together, these sites form a connected historical landscape, allowing viewers to explore how the city has grown, shifted, and redefined itself over time. By interacting with this map, users can trace Delhi’s journey from its ancient origins to its role as a modern capital, experiencing history not just through text, but through place and space."
         },
 
         {
@@ -101,7 +143,7 @@ function Story() {
         {
             type: "text",
             content:
-                "Now, let’s explore Delhi in a more immersive way. Scroll through the story to discover each landmark, its history, and its significance—while the map guides you through the journey."
+                "Now, let us move beyond the overview and step into a more immersive exploration of Delhi.\n\nThis journey is designed to unfold gradually, allowing you to experience the city not just as a collection of places, but as a sequence of interconnected stories shaped by time.\n\nAs you scroll through the narrative, each section will introduce a new landmark, revealing its history, cultural significance, and role in shaping the identity of Delhi.\n\nFrom monumental forts and sacred spaces to vibrant streets and modern landmarks, every location contributes to the city’s layered character.\n\nAlongside the narrative, the map will dynamically guide your journey. With each scroll, it will shift focus, zooming into specific areas and highlighting key locations, helping you understand how these places are connected across space.\n\nThis synchronized experience allows you to visualize Delhi’s transformation while following its story.\n\nTake your time to explore, observe, and connect the dots, because in Delhi, every place is part of a larger story waiting to be discovered."
         },
 
         // 🔥 MAIN STORY MAP (UPDATED)
@@ -251,6 +293,69 @@ function Story() {
                     );
                 }
 
+                if (sec.type === "map-1") {
+                    return (
+                        <section key={index} className="map-section map-1">
+
+                            {/* 🔥 TOP: TEXT + IMAGE */}
+                            <div className="map1-wrapper">
+
+                                {/* LEFT SIDE */}
+                                <div className="map1-text">
+                                    <p dangerouslySetInnerHTML={{ __html: sec.text }}></p>
+                                </div>
+
+                                {/* RIGHT SIDE */}
+                                <div className="map1-image">
+                                    {sec.video ? (
+                                        <video
+                                            src={sec.video}
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                        />
+                                    ) : (
+                                        <img src={sec.img} alt="map" />
+                                    )}
+                                </div>
+
+                            </div>
+
+                            {/* 🔥 BOTTOM: CENTERED TABLE */}
+                            {sec.table && (
+                                <div className="map1-table-wrapper">
+
+                                    {/* 🔥 LEFT HEADING */}
+                                    <div className="table-heading-side">
+                                        <h2>Historical Eras of Delhi</h2>
+                                    </div>
+
+                                    {/* 🔥 RIGHT TABLE */}
+                                    <table className="map-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Era</th>
+                                                <th>Key Constructions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {sec.table.map((row, i) => (
+                                                <tr key={i}>
+                                                    <td>{row.era}</td>
+                                                    <td>{row.built}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            )}
+
+                        </section>
+                    );
+                }
+
                 // 🗺️ MAP-2 (static overview map with markers)
                 if (sec.type === "map-2") {
                     return (
@@ -274,7 +379,7 @@ function Story() {
                 }
 
                 // 🗺️ GENERIC MAP (fallback for map-1 / map-2)
-                if (sec.type === "map-1" || sec.type === "map-2") {
+                if (sec.type === "map-2") {
                     return (
                         <section key={index} className={`map-section ${sec.type}`}>
                             <div className="map-container">
@@ -329,7 +434,6 @@ function Story() {
                                     </div>
                                 )}
                             </div>
-
                         </section>
                     );
                 }

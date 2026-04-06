@@ -52,22 +52,6 @@ function Map({ chapter, chapters, height = "500px" }) {
 
             // ✅ ADD EVENTS HERE (ONLY ONCE)
             map.current.on("load", () => {
-
-                // 🔥 CLICK
-                map.current.on("click", "delhi-tourist-points", (e) => {
-                    const feature = e.features[0];
-
-                    const name =
-                        feature.properties.name ||
-                        feature.properties["Place Name"] ||
-                        "Sagar";
-
-                    new mapboxgl.Popup()
-                        .setLngLat(feature.geometry.coordinates)
-                        .setText(name)
-                        .addTo(map.current);
-                });
-
                 // 🔥 HOVER CURSOR
                 map.current.on("mouseenter", "delhi-tourist-points", () => {
                     map.current.getCanvas().style.cursor = "pointer";
@@ -99,15 +83,15 @@ function Map({ chapter, chapters, height = "500px" }) {
             if (!map.current.getLayer("delhi-tourist-points")) return;
 
             // 🔥 CLICK
-            map.current.on("click", "delhi-tourist-points", (e) => {
-                const feature = e.features[0];
-                const name = feature.properties.name || "No name";
+            // map.current.on("click", "delhi-tourist-points", (e) => {
+            //     const feature = e.features[0];
+            //     const name = feature.properties.name || "No name";
 
-                new mapboxgl.Popup()
-                    .setLngLat(feature.geometry.coordinates)
-                    .setText(name)
-                    .addTo(map.current);
-            });
+            //     new mapboxgl.Popup()
+            //         .setLngLat(feature.geometry.coordinates)
+            //         .setText(name)
+            //         .addTo(map.current);
+            // });
 
             // 🔥 CURSOR
             map.current.on("mouseenter", "delhi-tourist-points", () => {
@@ -151,7 +135,7 @@ function Map({ chapter, chapters, height = "500px" }) {
 
             const marker = new mapboxgl.Marker(el)
                 .setLngLat(chap.location.center)
-                .setPopup(popup)   // ✅ ADD THIS
+                // .setPopup(popup)   // ✅ ADD THIS
                 .addTo(map.current);
 
             window.allMarkers.push(marker);
